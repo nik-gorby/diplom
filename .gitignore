@@ -1,4 +1,7 @@
 *venv/
+wandb/
 *.pbf
 *.csv
 *.zip
+*.pkl
+*.json
