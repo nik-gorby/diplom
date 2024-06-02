@@ -1,55 +1,26 @@
 
 # «Модель прогнозирования стоимости жилья для агентства недвижимости»
 
-## :dart: About ##
+## О проекте ##
 
-Describe your project
+Разработка модели машинного обучения, которая поможет обрабатывать объявления и увеличит число сделок и прибыль агентства.
 
-## :sparkles: Features ##
+## Инструменты ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+Было использовано:
 
-## :rocket: Technologies ##
+- [Python](https://www.python.org/)
+- [Docker](https://www.docker.com/)
+- [W&B](https://wandb.ai/)
+- [HuggingFace](https://huggingface.co/)
+- [Gradio](https://www.gradio.app/)
+- [GEOFABRIK](https://www.geofabrik.de/)
 
-The following tools were used in this project:
+## Использование: ##
 
-- [Expo](https://expo.io/)
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+[Запуск интерактивного демо модели](https://huggingface.co/spaces/Nikgorby/Diplom_DS_SF)
 
-## :white_check_mark: Requirements ##
+## Ссылки на результаты экспериментов ##
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
-
-## :checkered_flag: Starting ##
-
-```bash
-# Clone this project
-$ git clone https://github.com/nik-gorby/diplom_final
-
-# Access
-$ cd diplom_final
-
-# Install dependencies
-$ yarn
-
-# Run the project
-$ yarn start
-
-# The server will initialize in the <http://localhost:3000>
-```
-
-## :memo: License ##
-
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
-
-
-Made with :heart: by <a href="https://github.com/nik-gorby" target="_blank">{{YOUR_NAME}}</a>
-
-&#xa0;
-
-<a href="#top">Back to top</a>
+- [](https://wandb.ai/nikgorby/diplom_0106?nw=nwusernikgorby)
+- [](https://wandb.ai/nikgorby/diplom_kneighbors?nw=nwusernikgorby)
