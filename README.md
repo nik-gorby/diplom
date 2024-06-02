@@ -22,5 +22,5 @@
 
 ## Ссылки на результаты экспериментов ##
 
-- [](https://wandb.ai/nikgorby/diplom_0106?nw=nwusernikgorby)
-- [](https://wandb.ai/nikgorby/diplom_kneighbors?nw=nwusernikgorby)
+- [Результат](https://wandb.ai/nikgorby/diplom_0106?nw=nwusernikgorby)
+- [Результат](https://wandb.ai/nikgorby/diplom_kneighbors?nw=nwusernikgorby)
