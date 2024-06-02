@@ -22,5 +22,5 @@
 
 ## Ссылки на результаты экспериментов ##
 
-![Результат](https://github.com/nik-gorby/diplom/assets/138844875/937cf7a4-a439-4bc2-8bcf-5685307f6cb7)
-![Metrics_knn](https://github.com/nik-gorby/diplom/assets/138844875/ecd9af8e-aea1-4316-b11f-9929bbc4429a)
+- [Результат](https://wandb.ai/nikgorby/diplom_0106?nw=nwusernikgorby)
+- [Результат](https://wandb.ai/nikgorby/diplom_kneighbors?nw=nwusernikgorby)
