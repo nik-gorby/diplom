@@ -2,20 +2,23 @@ import gradio as gr
 import pandas as pd
 from huggingface_hub import hf_hub_download
 import joblib
-from geopy.geocoders import Nominatim
+from geopy.geocoders import Nominatim, Photon
 from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 import time
 
-# Загрузка модели
+# Загрузка модели из репозитория HF
 model_path = hf_hub_download(repo_id="Nikgorby/diplom_DS_SF", filename="random_forest_model (1).pkl")
 model = joblib.load(model_path)
 
-# with open('/home/dwarf/diplom/models/random_forest_model (1).pkl', 'rb') as file:
-#     model = joblib.load(file)  
+def predict(features_lst: list, model):
+    """Получение предсказаний от модели
 
-def predict(features_lst, model):
-    """
-    Purpose: arg
+    Args:
+        features_lst (list): список фичей
+        model (model): обученная модель
+
+    Returns:
+        list: предсказание
     """
     # Предсказание
     predictions = model.predict(features_lst)
@@ -32,7 +35,7 @@ def addr_to_coords(addr: str):
     Returns:
         float: координаты широта, долгота
     """
-    geolocator = Nominatim(user_agent="my_geocoder", scheme='http', timeout=10)
+    geolocator = Photon(user_agent="my_geocoder")
 
     # Геокодирование адреса
     try:
@@ -51,21 +54,15 @@ def addr_to_coords(addr: str):
         return addr_to_coords(addr)
     # end try
 
-# Определение функции предсказания
 def predict_out(baths, square, beds, address, pool, property_type, state, year_built, remodeled_year, avg_school_rating, schools_qty, avg_school_dist):
     """Функция получения предсказания от модели
 
     Args:
-        csv_file (csv-файл с фичами): файл формата csv
+        args: фичи
 
     Returns:
         float: предсказание модели
     """
-    # Загрузка модели
-    # with open('/home/dwarf/diplom/models/random_forest_model (1).pkl', 'rb') as file:
-    #     model = joblib.load(file)   
-
-    # Формирование списка фичей
 
     # Формирование признака объекта
     lst = [0]*8
@@ -76,32 +73,29 @@ def predict_out(baths, square, beds, address, pool, property_type, state, year_b
     coords = addr_to_coords(address)
     coords = ", ".join(map(str, coords))
 
+    # Формирование списка фичей
     features_lst = f'{baths}, {square}, {beds}, {coords}, {pool}, {property_type}, {state}, {year_built}, {remodeled_year}, {avg_school_rating}, {schools_qty}, {avg_school_dist}'
     features_lst = features_lst.split(", ")
     features_lst = [float(num) for num in features_lst]
     features_lst = [features_lst]
 
-    # # Считывание CSV файла
-    # data = pd.read_csv(csv_file.name)
-    
     # Предсказание
     predictions = predict(features_lst, model)
     
     # Возвращение предсказаний в виде DataFrame
-    result = predictions[0]
-    # # result = pd.DataFrame(predictions, columns=["Prediction"])
+    result = int(predictions[0])
     return features_lst, result
 
 # Создание интерфейса Gradio
-title = "Interactive gradio demo"
-description = "Демо модели."
+title = "Интерактивное демо модели"
+description = "Введите фичи."
 
 iface = gr.Interface(
     fn=predict_out,
     inputs=[gr.Textbox(label="Кол-во ванных"),
-            gr.Textbox(label="Площадь"),
+            gr.Textbox(label="Площадь, кв. фут."),
             gr.Textbox(label="Кол-во спален"),
-            gr.Textbox(label="Адрес"),
+            gr.Textbox(label="Адрес в виде 32413 Crystal Breeze Ln, Leesburg"),
             gr.Radio(
                 ["Нет", "Да"], type="index",
                 label = "Бассейн"
@@ -113,13 +107,13 @@ iface = gr.Interface(
             ),
             gr.Textbox(label='Штат (номер)'),
             gr.Textbox(label="Год постройки"),
-            gr.Textbox(label="Год капитального ремонта"),
-            gr.Textbox(label="Средний рейтинг школ рядом"),
+            gr.Textbox(label="Год капитального ремонта (0 если не проводился)"),
+            gr.Textbox(label="Средний рейтинг школ рядом (от 0 до 1)"),
             gr.Textbox(label="Количество школ рядом"),
-            gr.Textbox(label="Среднее расстояние до школы"),
+            gr.Textbox(label="Среднее расстояние до школы, миль"),
             ],
     outputs=[gr.Textbox(label="Features"),
-             gr.Textbox(label="Предсказание")],
+             gr.Textbox(label="Предсказание, $")],
     title=title,
     description=description,
     allow_flagging='never'
