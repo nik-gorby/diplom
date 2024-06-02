@@ -16,6 +16,12 @@
 - [Gradio](https://www.gradio.app/)
 - [GEOFABRIK](https://www.geofabrik.de/)
 
+## Этапы работы ##
+1. Загрузка первичных данных, обработка - diplom.ipynb
+2. Эксперимент по обучению и выбору модели - learning.ipynb
+3. Разработка простого web-интерфейса для демонстрации работы модели - gradio.ipynb
+4. Разработка приложения для возможности использования демо модели на HF - app.py
+
 ## Использование: ##
 
 [Запуск интерактивного демо модели](https://huggingface.co/spaces/Nikgorby/Diplom_DS_SF)
