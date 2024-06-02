@@ -5,3 +5,4 @@ wandb/
 *.zip
 *.pkl
 *.json
+OSM/
