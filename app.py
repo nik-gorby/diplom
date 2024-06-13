@@ -10,7 +10,7 @@ from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 import time
 
 # Загрузка модели из репозитория HF
-model_path = hf_hub_download(repo_id="Nikgorby/diplom_DS_SF", filename="random_forest_model (1).pkl")
+model_path = hf_hub_download(repo_id="Nikgorby/real_estate_predict", filename="random_forest_model (1).pkl")
 model = joblib.load(model_path)
 
 def predict(features_lst: list, model):
@@ -115,7 +115,7 @@ iface = gr.Interface(
             gr.Textbox(label="Количество школ рядом"),
             gr.Textbox(label="Среднее расстояние до школы, миль"),
             ],
-    outputs=[gr.Textbox(label="Features"),
+    outputs=[gr.Textbox(label="Строка фичей, передаваемая в модель (для контроля)"),
              gr.Textbox(label="Предсказание, $")],
     title=title,
     description=description,
