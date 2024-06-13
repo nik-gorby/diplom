@@ -90,32 +90,32 @@ def predict_out(baths, square, beds, address, pool, property_type, state, year_b
     return features_lst, result
 
 # Создание интерфейса Gradio
-title = "Интерактивное демо модели"
+title = "Демо модели"
 description = "Введите фичи."
 
 iface = gr.Interface(
     fn=predict_out,
     inputs=[gr.Textbox(label="Кол-во ванных", value=1),
-            gr.Textbox(label="Площадь, кв. фут."),
-            gr.Textbox(label="Кол-во спален"),
-            gr.Textbox(label="Адрес в виде 32413 Crystal Breeze Ln, Leesburg"),
+            gr.Textbox(label="Площадь, кв. фут.", value=1),
+            gr.Textbox(label="Кол-во спален", value=1),
+            gr.Textbox(label="Адрес в виде 32413 Crystal Breeze Ln, Leesburg", value="32413 Crystal Breeze Ln, Leesburg"),
             gr.Radio(
                 ["Нет", "Да"], type="index",
                 label = "Бассейн",
-                value=1
+                value="Нет"
             ),
             gr.Dropdown(
                 ["Кондоминиум", "Зем. участок", "На неск. семей", "Другое", "Ранчо", "На одну семью", "Таунхаус", "Традиционное"],
                 label='Тип объекта',
                 type="index",
-                value=1
+                value="Кондоминиум"
             ),
-            gr.Textbox(label='Штат (номер)'),
-            gr.Textbox(label="Год постройки"),
-            gr.Textbox(label="Год капитального ремонта (0 если не проводился)"),
-            gr.Textbox(label="Средний рейтинг школ рядом (от 0 до 1)"),
-            gr.Textbox(label="Количество школ рядом"),
-            gr.Textbox(label="Среднее расстояние до школы, миль"),
+            gr.Textbox(label='Штат (номер)', value=12),
+            gr.Textbox(label="Год постройки", value=1999),
+            gr.Textbox(label="Год капитального ремонта (0 если не проводился)", value=0),
+            gr.Textbox(label="Средний рейтинг школ рядом (от 0 до 1)", value=1),
+            gr.Textbox(label="Количество школ рядом", value=1),
+            gr.Textbox(label="Среднее расстояние до школы, миль", value=1),
             ],
     outputs=[gr.Textbox(label="Строка фичей, передаваемая в модель (для контроля)"),
              gr.Textbox(label="Предсказание, $")],
