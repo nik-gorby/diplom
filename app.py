@@ -95,18 +95,20 @@ description = "Введите фичи."
 
 iface = gr.Interface(
     fn=predict_out,
-    inputs=[gr.Textbox(label="Кол-во ванных"),
+    inputs=[gr.Textbox(label="Кол-во ванных", value=1),
             gr.Textbox(label="Площадь, кв. фут."),
             gr.Textbox(label="Кол-во спален"),
             gr.Textbox(label="Адрес в виде 32413 Crystal Breeze Ln, Leesburg"),
             gr.Radio(
                 ["Нет", "Да"], type="index",
-                label = "Бассейн"
+                label = "Бассейн",
+                value=1
             ),
             gr.Dropdown(
                 ["Кондоминиум", "Зем. участок", "На неск. семей", "Другое", "Ранчо", "На одну семью", "Таунхаус", "Традиционное"],
                 label='Тип объекта',
-                type="index"
+                type="index",
+                value=1
             ),
             gr.Textbox(label='Штат (номер)'),
             gr.Textbox(label="Год постройки"),
